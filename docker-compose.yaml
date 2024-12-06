@@ -1,9 +1,9 @@
 services:
   postgres:
-    image: bitnami/postgres
+    image: postgres:latest
     ports:
       - "5432:5432"
     environment:
-      - POSTGRESQL_PASSWORD=docker
-    volumes:
-      - "postgres_data:/bitnami/postgresql"
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=apivendas
+    

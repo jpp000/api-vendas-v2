@@ -7,7 +7,7 @@ const envSchema = z.object({
     .default('development'),
   PORT: z.coerce.number().default(3000),
   API_URL: z.string().default('http://localhost:3000'),
-  DB_TYPE: z.enum(['postgres', 'mysql', 'sqlite', 'mssql']).default('postgres'),
+  DB_TYPE: z.literal('postgres').default('postgres'),
   DB_USER: z.string().default('postgres'),
   DB_PASS: z.string().default('docker'),
   DB_HOST: z.string().default('localhost'),
