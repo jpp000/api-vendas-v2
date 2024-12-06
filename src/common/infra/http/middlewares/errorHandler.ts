@@ -9,8 +9,9 @@ export function errorHandler(
 ): Response {
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
-      code: 'error',
+      status: 'error',
       message: err.message,
+      name: err.name,
     })
   }
 
