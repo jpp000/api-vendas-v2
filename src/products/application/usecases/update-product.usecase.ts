@@ -28,6 +28,10 @@ export namespace UpdateProductUseCase {
         }
       })
 
+      if (input.name) {
+        await this.productsRepository.conflictingName(input.name, input.id)
+      }
+
       const updatedProduct = await this.productsRepository.update(product)
 
       return updatedProduct

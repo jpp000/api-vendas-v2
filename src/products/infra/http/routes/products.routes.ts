@@ -3,6 +3,8 @@ import { createProductController } from '../controllers/create-product.controlle
 import { validateCreateProduct } from '../middlewares/validate-create-product.middleware'
 import { validateGetProduct } from '../middlewares/validate-get-product.middleware'
 import { getProductController } from '../controllers/get-product.controller'
+import { validateUpdateProduct } from '../middlewares/validate-update-product.middleware'
+import { updateProductController } from '../controllers/update-product.controller'
 
 const productRoutes = Router()
 
@@ -101,5 +103,7 @@ productRoutes.post('/', validateCreateProduct, createProductController)
  *         description: The product was not found
  */
 productRoutes.get('/:id', validateGetProduct, getProductController)
+
+productRoutes.put('/:id', validateUpdateProduct, updateProductController)
 
 export { productRoutes }
