@@ -17,7 +17,7 @@ export class ProductsInMemoryRepository
     const product = this.items.find(p => p.name === name)
 
     if (!product) {
-      throw new NotFoundError('Product not found')
+      throw new NotFoundError(`Product not found using name ${name}`)
     }
 
     return product
@@ -33,7 +33,7 @@ export class ProductsInMemoryRepository
   async conflictingName(name: string): Promise<void> {
     const product = this.items.find(p => p.name === name)
     if (product) {
-      throw new ConflictError('Product already registered')
+      throw new ConflictError('Name already used on another product')
     }
   }
 
