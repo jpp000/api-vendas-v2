@@ -1,6 +1,7 @@
 import { env } from '../env'
 import { dataSource } from '../typeorm'
 import { app } from './app'
+import '@/common/infra/container'
 
 dataSource
   .initialize()
