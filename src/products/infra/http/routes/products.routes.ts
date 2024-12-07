@@ -77,6 +77,29 @@ const productRoutes = Router()
  */
 productRoutes.post('/', validateCreateProduct, createProductController)
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     summary: Get a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product ID
+ *     responses:
+ *       200:
+ *         description: The product
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: The product was not found
+ */
 productRoutes.get('/:id', validateGetProduct, getProductController)
 
 export { productRoutes }
