@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { ProductsInMemoryRepository } from '@/products/infra/in-memory/repositories/products-in-memory.repository'
 import { CreateProductUseCase } from '../create-product.usecase'
 import { ConflictError } from '@/common/domain/errors/conflict.error'

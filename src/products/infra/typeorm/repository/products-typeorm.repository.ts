@@ -12,13 +12,14 @@ import { ILike, In, Repository } from 'typeorm'
 import { Product } from '../entities/product.entity'
 import { NotFoundError } from '@/common/domain/errors/not-found.error'
 import { ConflictError } from '@/common/domain/errors/conflict.error'
-import { inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
+@injectable()
 export class ProductsTypeormRepository implements ProductsRepository {
   sortableFields: string[] = ['name', 'created_at']
 
   constructor(
-    @inject('ProductDefaultRepository')
+    @inject('ProductsDefaultTypeormRepository')
     private productsRepository: Repository<Product>,
   ) {}
 

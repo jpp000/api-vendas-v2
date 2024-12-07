@@ -5,6 +5,7 @@ import { ProductsTypeormRepository } from '@/products/infra/typeorm/repository/p
 import { container } from 'tsyringe'
 import { Product } from '../typeorm/entities/product.entity'
 import { Repository } from 'typeorm'
+import { GetProductUseCase } from '@/products/application/usecases/get-product.usecase'
 
 container.registerSingleton<ProductsRepository>(
   'ProductsRepository',
@@ -14,6 +15,11 @@ container.registerSingleton<ProductsRepository>(
 container.registerSingleton<CreateProductUseCase.UseCase>(
   'CreateProductUseCase',
   CreateProductUseCase.UseCase,
+)
+
+container.registerSingleton<GetProductUseCase.UseCase>(
+  'GetProductUseCase',
+  GetProductUseCase.UseCase,
 )
 
 container.register<Repository<Product>>('ProductsDefaultTypeormRepository', {
