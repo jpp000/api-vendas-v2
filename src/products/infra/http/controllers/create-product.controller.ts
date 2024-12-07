@@ -9,6 +9,8 @@ export async function createProductController(req: Request, res: Response) {
     'CreateProductUseCase',
   )
 
+  console.log(name, price, quantity)
+
   const product = await createProductUseCase.execute({
     name,
     price,

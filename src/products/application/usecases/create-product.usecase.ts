@@ -1,7 +1,7 @@
 import { BadRequestError } from '@/common/domain/errors/bad-request.error'
-import { ProductModel } from '@/products/domain/models/product.model'
 import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
 import { inject, injectable } from 'tsyringe'
+import { ProductOutput } from '../dtos/product-output.dto'
 
 export namespace CreateProductUseCase {
   export type Input = {
@@ -10,7 +10,7 @@ export namespace CreateProductUseCase {
     quantity: number
   }
 
-  export type Output = ProductModel
+  export type Output = ProductOutput
 
   @injectable()
   export class UseCase {

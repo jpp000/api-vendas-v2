@@ -1,13 +1,13 @@
-import { ProductModel } from '@/products/domain/models/product.model'
 import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
 import { inject, injectable } from 'tsyringe'
+import { ProductOutput } from '../dtos/product-output.dto'
 
 export namespace GetProductUseCase {
   export type Input = {
     id: string
   }
 
-  export type Output = ProductModel
+  export type Output = ProductOutput
 
   @injectable()
   export class UseCase {

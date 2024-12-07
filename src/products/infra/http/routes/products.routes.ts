@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import { createProductController } from '../controllers/create-product.controller'
 import { validateCreateProduct } from '../middlewares/validate-create-product.middleware'
+import { validateGetProduct } from '../middlewares/validate-get-product.middleware'
+import { getProductController } from '../controllers/get-product.controller'
 
 const productRoutes = Router()
 
@@ -74,5 +76,7 @@ const productRoutes = Router()
  *         description: Name already used on another product
  */
 productRoutes.post('/', validateCreateProduct, createProductController)
+
+productRoutes.get('/:id', validateGetProduct, getProductController)
 
 export { productRoutes }
