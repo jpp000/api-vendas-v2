@@ -18,5 +18,5 @@ export interface ProductsRepository
   extends RepositoryInterface<ProductModel, CreateProductProps> {
   findByName(name: string): Promise<ProductModel>
   findAllByIds(ids: ProductId[]): Promise<ProductModel[]>
-  conflictingName(productName: string, productId: string): Promise<void>
+  conflictingName(productName: string): Promise<void>
 }

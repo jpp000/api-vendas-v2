@@ -22,15 +22,17 @@ export namespace UpdateProductUseCase {
     async execute(input: Input): Promise<Output> {
       const product = await this.productsRepository.findById(input.id)
 
+      if (input.name) {
+        if (product.name !== input.name) {
+          await this.productsRepository.conflictingName(input.name)
+        }
+      }
+
       Object.keys(input).forEach(key => {
         if (Object.prototype.hasOwnProperty.call(input, key)) {
           product[key] = input[key]
         }
       })
-
-      if (input.name) {
-        await this.productsRepository.conflictingName(input.name, input.id)
-      }
 
       const updatedProduct = await this.productsRepository.update(product)
 

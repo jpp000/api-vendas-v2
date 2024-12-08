@@ -43,14 +43,14 @@ export class ProductsTypeormRepository implements ProductsRepository {
     return productsFound
   }
 
-  async conflictingName(productName: string, productId: string): Promise<void> {
+  async conflictingName(productName: string): Promise<void> {
     const product = await this.productsRepository.findOne({
       where: {
         name: productName,
       },
     })
 
-    if (product && product.id !== productId) {
+    if (product) {
       throw new ConflictError('Name already used by another product')
     }
   }

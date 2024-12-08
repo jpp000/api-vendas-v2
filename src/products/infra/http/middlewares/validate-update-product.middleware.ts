@@ -4,8 +4,8 @@ import { z } from 'zod'
 
 const updateProductBodySchema = z.object({
   name: z.string().optional(),
-  price: z.number().optional(),
-  quantity: z.number().optional(),
+  price: z.coerce.number().optional(),
+  quantity: z.coerce.number().optional(),
 })
 
 const updateProductParamsSchema = z.object({
