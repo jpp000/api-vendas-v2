@@ -6,6 +6,8 @@ import { getProductController } from '../controllers/get-product.controller'
 import { validateUpdateProduct } from '../middlewares/validate-update-product.middleware'
 import { updateProductController } from '../controllers/update-product.controller'
 import { deleteProductController } from '../controllers/delete-product.controller'
+import { validateSearchProducts } from '../middlewares/validate-search-products.middleware'
+import { searchProductsController } from '../controllers/search-products.controller'
 
 const productRoutes = Router()
 
@@ -160,5 +162,7 @@ productRoutes.put('/:id', validateUpdateProduct, updateProductController)
  *         description: The product was not found
  */
 productRoutes.delete('/:id', validateGetProduct, deleteProductController)
+
+productRoutes.get('/', validateSearchProducts, searchProductsController)
 
 export { productRoutes }

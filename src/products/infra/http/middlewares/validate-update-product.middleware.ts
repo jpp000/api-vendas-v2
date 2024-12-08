@@ -1,4 +1,3 @@
-import { dataValidation } from '@/common/infra/validation/zod'
 import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
@@ -17,8 +16,18 @@ export function validateUpdateProduct(
   res: Response,
   next: NextFunction,
 ) {
-  dataValidation(updateProductBodySchema, req.body)
-  dataValidation(updateProductParamsSchema, req.params)
+  try {
+    const validatedParamsData = updateProductParamsSchema.parse(req.params)
+    req.params = validatedParamsData
 
-  next()
+    const validatedBodyData = updateProductBodySchema.parse(req.body)
+    req.body = validatedBodyData
+
+    next()
+  } catch (err) {
+    res.status(400).json({
+      message: 'Validation failed',
+      errors: err.errors || err.message,
+    })
+  }
 }

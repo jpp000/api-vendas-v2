@@ -8,6 +8,7 @@ import { Repository } from 'typeorm'
 import { GetProductUseCase } from '@/products/application/usecases/get-product.usecase'
 import { UpdateProductUseCase } from '@/products/application/usecases/update-product.usecase'
 import { DeleteProductUseCase } from '@/products/application/usecases/delete-product.usecase'
+import { SearchProductsUseCase } from '@/products/application/usecases/search-products.usecase'
 
 container.registerSingleton<ProductsRepository>(
   'ProductsRepository',
@@ -32,6 +33,11 @@ container.registerSingleton<UpdateProductUseCase.UseCase>(
 container.registerSingleton<DeleteProductUseCase.UseCase>(
   'DeleteProductUseCase',
   DeleteProductUseCase.UseCase,
+)
+
+container.registerSingleton<SearchProductsUseCase.UseCase>(
+  'SearchProductsUseCase',
+  SearchProductsUseCase.UseCase,
 )
 
 container.register<Repository<Product>>('ProductsDefaultTypeormRepository', {

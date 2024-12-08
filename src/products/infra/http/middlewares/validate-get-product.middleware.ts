@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
 import { z } from 'zod'
-import { dataValidation } from '@/common/infra/validation/zod'
 
 const getProductSchema = z.object({
   id: z.string().uuid(),
@@ -11,6 +10,15 @@ export function validateGetProduct(
   res: Response,
   next: NextFunction,
 ) {
-  dataValidation(getProductSchema, req.params)
-  next()
+  try {
+    const validatedData = getProductSchema.parse(req.params)
+    req.params = validatedData
+
+    next()
+  } catch (err) {
+    res.status(400).json({
+      message: 'Validation failed',
+      errors: err.errors || err.message,
+    })
+  }
 }

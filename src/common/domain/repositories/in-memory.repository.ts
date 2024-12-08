@@ -56,8 +56,14 @@ export abstract class InMemoryRepository<Model extends ModelProps>
   async search(props: SearchInput): Promise<SearchOutput<Model>> {
     const page = props.page ?? 1
     const per_page = props.per_page ?? 15
-    const sort = props.sort ?? null
-    const sort_dir = props.sort_dir ?? null
+
+    const sort = this.sortableFields.includes(props.sort)
+      ? props.sort
+      : 'created_at'
+    const sort_dir = ['asc', 'desc'].includes(props.sort_dir)
+      ? props.sort_dir
+      : 'desc'
+
     const filter = props.filter ?? null
 
     const filteredItems = await this.applyFilter(this.items, filter)
