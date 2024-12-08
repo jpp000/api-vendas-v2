@@ -5,6 +5,7 @@ import { validateGetProduct } from '../middlewares/validate-get-product.middlewa
 import { getProductController } from '../controllers/get-product.controller'
 import { validateUpdateProduct } from '../middlewares/validate-update-product.middleware'
 import { updateProductController } from '../controllers/update-product.controller'
+import { deleteProductController } from '../controllers/delete-product.controller'
 
 const productRoutes = Router()
 
@@ -104,6 +105,60 @@ productRoutes.post('/', validateCreateProduct, createProductController)
  */
 productRoutes.get('/:id', validateGetProduct, getProductController)
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   put:
+ *     summary: Update a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       200:
+ *         description: The product was successfully updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Input data not provided or invalid
+ *       404:
+ *         description: The product was not found
+ *       409:
+ *         description: Name already used on another product
+ */
 productRoutes.put('/:id', validateUpdateProduct, updateProductController)
+
+/**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product ID
+ *     responses:
+ *       204:
+ *         description: The product was successfully deleted
+ *       404:
+ *         description: The product was not found
+ */
+productRoutes.delete('/:id', validateGetProduct, deleteProductController)
 
 export { productRoutes }
