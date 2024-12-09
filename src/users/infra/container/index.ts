@@ -7,6 +7,7 @@ import { UsersRepository } from '@/users/domain/repositories/users.repository'
 import { HashProvider } from '@/users/domain/providers/hash.provider'
 import { BcryptHashProvider } from '../providers/bcrypt-hash.provider'
 import { CreateUserUseCase } from '@/users/application/usecases/create-user.usecase'
+import { GetUserUseCase } from '@/users/application/usecases/get-user.usecase'
 
 container.registerSingleton<HashProvider>('HashProvider', BcryptHashProvider)
 
@@ -18,6 +19,11 @@ container.registerSingleton<UsersRepository>(
 container.registerSingleton<CreateUserUseCase.UseCase>(
   'CreateUserUseCase',
   CreateUserUseCase.UseCase,
+)
+
+container.registerSingleton<GetUserUseCase.UseCase>(
+  'GetUserUseCase',
+  GetUserUseCase.UseCase,
 )
 
 container.register<Repository<User>>('UsersDefaultTypeormRepository', {
