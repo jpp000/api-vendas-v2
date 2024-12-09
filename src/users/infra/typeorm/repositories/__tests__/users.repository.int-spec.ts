@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto'
 import { User } from '../../entities/user.entity'
 import { testDataSource } from '@/products/infra/typeorm/testing/data-source'
-import { UsersTypeormRepository } from '../users.repository'
+import { UsersTypeormRepository } from '../users-typeorm.repository'
 import { NotFoundError } from '@/common/domain/errors/not-found.error'
 import { ConflictError } from '@/common/domain/errors/conflict.error'
 import { UsersDataBuilder } from '@/users/infra/testing/helpers/users-data-builder'
