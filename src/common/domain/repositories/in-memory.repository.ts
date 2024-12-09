@@ -31,7 +31,7 @@ export abstract class InMemoryRepository<Model extends ModelProps>
     return model as unknown as Model
   }
 
-  async insert(model: Model): Promise<Model> {
+  async save(model: Model): Promise<Model> {
     this.items.push(model)
     return model
   }

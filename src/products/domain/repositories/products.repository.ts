@@ -1,5 +1,5 @@
 import { RepositoryInterface } from '@/common/domain/repositories/interfaces/repository.interface'
-import { ProductModel } from '../../models/product.model'
+import { ProductModel } from '../models/product.model'
 
 export type ProductId = {
   id: string

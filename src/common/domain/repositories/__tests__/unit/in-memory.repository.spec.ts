@@ -57,9 +57,9 @@ describe('InMemoryRepository unit tests', () => {
     })
   })
 
-  describe('insert', () => {
-    it('should inserts a new model', async () => {
-      const result = await sut.insert(model)
+  describe('save', () => {
+    it('should saves a new model', async () => {
+      const result = await sut.save(model)
       expect(result).toStrictEqual(sut.items[0])
     })
   })
@@ -76,7 +76,7 @@ describe('InMemoryRepository unit tests', () => {
     })
 
     it('should find a model by id', async () => {
-      const data = await sut.insert(model)
+      const data = await sut.save(model)
       const result = await sut.findById(data.id)
       expect(result).toStrictEqual(data)
     })
@@ -90,7 +90,7 @@ describe('InMemoryRepository unit tests', () => {
     })
 
     it('should update an model', async () => {
-      const data = await sut.insert(model)
+      const data = await sut.save(model)
       const modelUpdated = {
         id: data.id,
         name: 'updated name',
@@ -115,7 +115,7 @@ describe('InMemoryRepository unit tests', () => {
     })
 
     it('should delete an model', async () => {
-      const data = await sut.insert(model)
+      const data = await sut.save(model)
       expect(sut.items.length).toBe(1)
       await sut.delete(data.id)
       expect(sut.items.length).toBe(0)

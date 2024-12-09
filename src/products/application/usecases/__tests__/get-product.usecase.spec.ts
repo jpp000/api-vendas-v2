@@ -1,7 +1,7 @@
 import 'reflect-metadata'
-import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { GetProductUseCase } from '../get-product.usecase'
-import { ProductsInMemoryRepository } from '@/products/infra/in-memory/repositories/products-in-memory.repository'
+import { ProductsInMemoryRepository } from '@/products/domain/in-memory/repositories/products-in-memory.repository'
 import { NotFoundError } from '@/common/domain/errors/not-found.error'
 
 describe('GetProductUseCase Unit Tests', () => {
@@ -19,7 +19,7 @@ describe('GetProductUseCase Unit Tests', () => {
       quantity: 5,
     }
     const model = repository.create(props)
-    await repository.insert(model)
+    await repository.save(model)
     const result = await sut.execute({ id: model.id })
     expect(result).toMatchObject(model)
     expect(spyFindById).toHaveBeenCalledTimes(1)

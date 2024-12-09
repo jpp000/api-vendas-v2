@@ -5,7 +5,7 @@ import { ProductModel } from '@/products/domain/models/product.model'
 import {
   ProductId,
   ProductsRepository,
-} from '@/products/domain/repositories/interfaces/products.repository'
+} from '@/products/domain/repositories/products.repository'
 
 export class ProductsInMemoryRepository
   extends InMemoryRepository<ProductModel>

@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { ProductsInMemoryRepository } from '@/products/infra/in-memory/repositories/products-in-memory.repository'
+import { ProductsInMemoryRepository } from '@/products/domain/in-memory/repositories/products-in-memory.repository'
 import { UpdateProductUseCase } from '../update-product.usecase'
 import { NotFoundError } from '@/common/domain/errors/not-found.error'
 import { ProductsDataBuilder } from '@/products/infra/testing/helpers/products-data-builder'
@@ -21,7 +21,7 @@ describe('UpdateProductUseCase Unit Tests', () => {
     const product1 = repository.create(
       ProductsDataBuilder({ name: 'Product 1' }),
     )
-    await repository.insert(product1)
+    await repository.save(product1)
 
     const props = {
       name: 'Product 2',
@@ -29,7 +29,7 @@ describe('UpdateProductUseCase Unit Tests', () => {
       quantity: 5,
     }
     const model = repository.create(props)
-    await repository.insert(model)
+    await repository.save(model)
 
     const newData = {
       id: model.id,
@@ -47,7 +47,7 @@ describe('UpdateProductUseCase Unit Tests', () => {
       quantity: 5,
     }
     const model = repository.create(props)
-    await repository.insert(model)
+    await repository.save(model)
     const newData = {
       id: model.id,
       name: 'new name',

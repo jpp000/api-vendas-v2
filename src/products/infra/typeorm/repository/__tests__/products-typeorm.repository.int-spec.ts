@@ -54,10 +54,10 @@ describe('ProductsTypeormRepository integration tests', () => {
     })
   })
 
-  describe('insert', () => {
-    it('should insert a new product', async () => {
+  describe('save', () => {
+    it('should save a new product', async () => {
       const data = ProductsDataBuilder({ name: 'Product 1' })
-      const result = await ormRepository.insert(data)
+      const result = await ormRepository.save(data)
       expect(result.name).toEqual(data.name)
     })
   })

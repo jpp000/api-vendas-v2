@@ -1,6 +1,6 @@
 import 'reflect-metadata'
-import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
-import { ProductsInMemoryRepository } from '@/products/infra/in-memory/repositories/products-in-memory.repository'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
+import { ProductsInMemoryRepository } from '@/products/domain/in-memory/repositories/products-in-memory.repository'
 import { SearchProductsUseCase } from '../search-products.usecase'
 
 describe('SearchProductsUseCase Unit Tests', () => {
@@ -21,7 +21,7 @@ describe('SearchProductsUseCase Unit Tests', () => {
       }),
     )
     for (const product of products) {
-      await repository.insert(product)
+      await repository.save(product)
     }
 
     const result = await sut.execute({})
@@ -31,10 +31,10 @@ describe('SearchProductsUseCase Unit Tests', () => {
   })
 
   it('should apply sorting and filtering', async () => {
-    await repository.insert(
+    await repository.save(
       repository.create({ name: 'A Product', price: 10, quantity: 5 }),
     )
-    await repository.insert(
+    await repository.save(
       repository.create({ name: 'B Product', price: 20, quantity: 3 }),
     )
 
@@ -53,7 +53,7 @@ describe('SearchProductsUseCase Unit Tests', () => {
   })
 
   it('should handle invalid sort and sort_dir gracefully', async () => {
-    await repository.insert(
+    await repository.save(
       repository.create({ name: 'Product 1', price: 10, quantity: 5 }),
     )
 
@@ -75,7 +75,7 @@ describe('SearchProductsUseCase Unit Tests', () => {
       }),
     )
     for (const product of products) {
-      await repository.insert(product)
+      await repository.save(product)
     }
 
     const result = await sut.execute({ page: 2, per_page: 5 })

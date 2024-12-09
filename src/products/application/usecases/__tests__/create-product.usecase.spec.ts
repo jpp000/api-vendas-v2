@@ -1,9 +1,9 @@
 import 'reflect-metadata'
-import { ProductsInMemoryRepository } from '@/products/infra/in-memory/repositories/products-in-memory.repository'
+import { ProductsInMemoryRepository } from '@/products/domain/in-memory/repositories/products-in-memory.repository'
 import { CreateProductUseCase } from '../create-product.usecase'
 import { ConflictError } from '@/common/domain/errors/conflict.error'
 import { BadRequestError } from '@/common/domain/errors/bad-request.error'
-import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 
 describe('CreateProductUseCase Unit Tests', () => {
   let sut: CreateProductUseCase.UseCase
@@ -15,7 +15,7 @@ describe('CreateProductUseCase Unit Tests', () => {
   })
 
   it('should create a product', async () => {
-    const spyInsert = jest.spyOn(repository, 'insert')
+    const spysave = jest.spyOn(repository, 'save')
     const props = {
       name: 'Product 1',
       price: 10,
@@ -24,7 +24,7 @@ describe('CreateProductUseCase Unit Tests', () => {
     const result = await sut.execute(props)
     expect(result.id).toBeDefined()
     expect(result.created_at).toBeDefined()
-    expect(spyInsert).toHaveBeenCalledTimes(1)
+    expect(spysave).toHaveBeenCalledTimes(1)
   })
 
   it('should not be possible to register a product with the name of another product', async () => {

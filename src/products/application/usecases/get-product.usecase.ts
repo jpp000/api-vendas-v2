@@ -1,4 +1,4 @@
-import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { inject, injectable } from 'tsyringe'
 import { ProductOutput } from '../dtos/product-output.dto'
 

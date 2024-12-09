@@ -1,6 +1,6 @@
 import { dataSource } from '@/common/infra/typeorm'
 import { CreateProductUseCase } from '@/products/application/usecases/create-product.usecase'
-import { ProductsRepository } from '@/products/domain/repositories/interfaces/products.repository'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { ProductsTypeormRepository } from '@/products/infra/typeorm/repository/products-typeorm.repository'
 import { container } from 'tsyringe'
 import { Product } from '../typeorm/entities/product.entity'
