@@ -210,8 +210,8 @@ describe('InMemoryRepository unit tests', () => {
         total: 16,
         current_page: 1,
         per_page: 15,
-        sort: null,
-        sort_dir: null,
+        sort: 'created_at',
+        sort_dir: 'desc',
         filter: null,
       })
     })
@@ -234,8 +234,8 @@ describe('InMemoryRepository unit tests', () => {
         total: 3,
         current_page: 1,
         per_page: 2,
-        sort: null,
-        sort_dir: null,
+        sort: 'created_at',
+        sort_dir: 'desc',
         filter: 'test',
       })
     })

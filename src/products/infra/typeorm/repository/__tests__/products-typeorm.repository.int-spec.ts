@@ -31,7 +31,7 @@ describe('ProductsTypeormRepository integration tests', () => {
     it('should generate an error when the product is not found', async () => {
       const id = randomUUID()
       await expect(ormRepository.findById(id)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${id}`),
+        new NotFoundError(`Entity not found with ID: ${id}`),
       )
     })
 
@@ -66,7 +66,7 @@ describe('ProductsTypeormRepository integration tests', () => {
     it('should generate an error when the product is not found', async () => {
       const data = ProductsDataBuilder({})
       await expect(ormRepository.update(data)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${data.id}`),
+        new NotFoundError(`Entity not found with ID: ${data.id}`),
       )
     })
 
@@ -85,7 +85,7 @@ describe('ProductsTypeormRepository integration tests', () => {
     it('should generate an error when the product is not found', async () => {
       const id = randomUUID()
       await expect(ormRepository.delete(id)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${id}`),
+        new NotFoundError(`Entity not found with ID: ${id}`),
       )
     })
 
