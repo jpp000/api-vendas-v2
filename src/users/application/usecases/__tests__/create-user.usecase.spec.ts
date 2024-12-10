@@ -3,7 +3,7 @@ import { UsersInMemoryRepository } from '@/users/domain/in-memory/repositories/u
 import { CreateUserUseCase } from '../create-user.usecase'
 import { UserOutput } from '../../dtos/user-output.dto'
 import { ConflictError } from '@/common/domain/errors/conflict.error'
-import { BcryptHashProvider } from '@/users/infra/providers/bcrypt-hash.provider'
+import { BcryptHashProvider } from '@/users/infra/providers/hash/bcrypt-hash.provider'
 
 describe('CreateUserUseCase', () => {
   let createUserUseCase: CreateUserUseCase.UseCase

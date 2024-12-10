@@ -14,6 +14,10 @@ const envSchema = z.object({
   DB_NAME: z.string().default('apivendas'),
   DB_PORT: z.coerce.number().default(5432),
   DB_SCHEMA: z.string().default('public'),
+  JWT_SECRET: z.string(),
+  JWT_EXPIRES_IN: z.string(),
+  AUTHENTICATION_COOKIE: z.string().default('Authentication'),
+  AUTHENTICATION_COOKIE_EXPIRATION: z.number().default(86400000),
 })
 
 const _env = envSchema.safeParse(process.env)

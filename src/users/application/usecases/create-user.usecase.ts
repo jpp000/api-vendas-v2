@@ -15,7 +15,7 @@ export namespace CreateUserUseCase {
   @injectable()
   export class UseCase {
     constructor(
-      @inject('UsersTypeormRepository')
+      @inject('UsersRepository')
       private readonly usersRepository: UsersRepository,
 
       @inject('HashProvider')

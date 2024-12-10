@@ -14,7 +14,7 @@ export namespace SearchUsersUseCase {
   @injectable()
   export class UseCase {
     constructor(
-      @inject('UsersTypeormRepository')
+      @inject('UsersRepository')
       private readonly usersRepository: UsersRepository,
     ) {}
 

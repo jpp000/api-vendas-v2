@@ -1,0 +1,5 @@
+import { env } from '@/common/infra/env'
+
+export const AUTHENTICATION_COOKIE = env.AUTHENTICATION_COOKIE
+export const AUTHENTICATION_COOKIE_EXPIRATION =
+  env.AUTHENTICATION_COOKIE_EXPIRATION
