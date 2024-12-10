@@ -12,6 +12,8 @@ import { SearchUsersUseCase } from '@/users/application/usecases/search-users.us
 import { TokenProvider } from '@/users/domain/providers/token.provider'
 import { JwtTokenProvider } from '../providers/token/jwt-token.provider'
 import { LoginUseCase } from '@/users/application/usecases/login.usecase'
+import { UpdateUserUseCase } from '@/users/application/usecases/update-user.usecase'
+import { UpdateUserPasswordUseCase } from '@/users/application/usecases/update-password.usecase'
 
 container.registerSingleton<HashProvider>('HashProvider', BcryptHashProvider)
 
@@ -40,6 +42,16 @@ container.registerSingleton<SearchUsersUseCase.UseCase>(
 container.registerSingleton<LoginUseCase.UseCase>(
   'LoginUseCase',
   LoginUseCase.UseCase,
+)
+
+container.registerSingleton<UpdateUserUseCase.UseCase>(
+  'UpdateUserUseCase',
+  UpdateUserUseCase.UseCase,
+)
+
+container.registerSingleton<UpdateUserPasswordUseCase.UseCase>(
+  'UpdateUserPasswordUseCase',
+  UpdateUserPasswordUseCase.UseCase,
 )
 
 container.register<Repository<User>>('UsersDefaultTypeormRepository', {
