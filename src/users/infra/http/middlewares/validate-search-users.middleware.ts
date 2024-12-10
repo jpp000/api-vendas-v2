@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 
-const searchProductsSchema = z.object({
+const searchUserSchema = z.object({
   page: z.number().min(1).default(1),
   per_page: z.number().min(0).default(15),
   sort: z.string().optional().default('created_at'),
@@ -9,18 +9,18 @@ const searchProductsSchema = z.object({
   filter: z.string().optional(),
 })
 
-export function validateSearchProducts(
+export async function validateSearchUsers(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
   try {
-    const validatedData = searchProductsSchema.parse(req.body)
+    const validatedData = searchUserSchema.parse(req.body)
     req.body = validatedData
 
     next()
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'Validation failed',
       errors: err.errors || err.message,
     })
