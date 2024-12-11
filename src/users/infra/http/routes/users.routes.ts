@@ -1,16 +1,21 @@
 import { Router } from 'express'
-import { validateCreateUser } from '../middlewares/validate-create-user.middleware'
-import { createUserController } from '../controllers/create-user.controller'
-import { validateGetUser } from '../middlewares/validate-get-user.middleware'
-import { getUserController } from '../controllers/get-user.controller'
-import { validateSearchUsers } from '../middlewares/validate-search-users.middleware'
-import { searchUsersController } from '../controllers/search-users.controller'
-import { loginController } from '../controllers/login.controller'
-import { validateLoginUser } from '../middlewares/validate-login.middleware'
-import { validaUpdateUser } from '../middlewares/validate-update-user.middleware'
-import { updateUserController } from '../controllers/update-user.controller'
-import { validaUpdateUserPasswword } from '../middlewares/validate-update-user-password.middleware'
-import { updateUserPasswordController } from '../controllers/update-user-password.controller'
+import {
+  validateCreateUser,
+  validateGetUser,
+  validaUpdateUser,
+  validaUpdateUserPasswword,
+  validateLoginUser,
+  validateSearchUsers,
+} from '../middlewares'
+import {
+  createUserController,
+  getUserController,
+  searchUsersController,
+  loginController,
+  updateUserController,
+  updateUserPasswordController,
+  deleteUserController,
+} from '../controllers'
 
 const usersRoutes = Router()
 
@@ -29,5 +34,7 @@ usersRoutes.put(
   validaUpdateUserPasswword,
   updateUserPasswordController,
 )
+
+usersRoutes.delete('/:id', validateGetUser, deleteUserController)
 
 export { usersRoutes }

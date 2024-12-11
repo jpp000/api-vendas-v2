@@ -14,6 +14,7 @@ import { JwtTokenProvider } from '../providers/token/jwt-token.provider'
 import { LoginUseCase } from '@/users/application/usecases/login.usecase'
 import { UpdateUserUseCase } from '@/users/application/usecases/update-user.usecase'
 import { UpdateUserPasswordUseCase } from '@/users/application/usecases/update-password.usecase'
+import { DeleteUserUseCase } from '@/users/application/usecases/delete-user.usecase'
 
 container.registerSingleton<HashProvider>('HashProvider', BcryptHashProvider)
 
@@ -52,6 +53,11 @@ container.registerSingleton<UpdateUserUseCase.UseCase>(
 container.registerSingleton<UpdateUserPasswordUseCase.UseCase>(
   'UpdateUserPasswordUseCase',
   UpdateUserPasswordUseCase.UseCase,
+)
+
+container.registerSingleton<DeleteUserUseCase.UseCase>(
+  'DeleteUserUseCase',
+  DeleteUserUseCase.UseCase,
 )
 
 container.register<Repository<User>>('UsersDefaultTypeormRepository', {

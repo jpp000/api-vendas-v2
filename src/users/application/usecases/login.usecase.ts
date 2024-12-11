@@ -4,11 +4,6 @@ import { HashProvider } from '@/users/domain/providers/hash.provider'
 import { InvalidPasswordError } from '@/common/domain/errors/invalid-password.error'
 import { TokenProvider } from '@/users/domain/providers/token.provider'
 import { TokenPayload } from '@/users/domain/interfaces/token-payload.interface'
-import { Response } from 'express'
-import {
-  AUTHENTICATION_COOKIE,
-  AUTHENTICATION_COOKIE_EXPIRATION,
-} from '../constants'
 
 export namespace LoginUseCase {
   export type Input = {
@@ -34,7 +29,7 @@ export namespace LoginUseCase {
       private readonly tokenProvider: TokenProvider,
     ) {}
 
-    async execute({ email, password }: Input, res: Response): Promise<Output> {
+    async execute({ email, password }: Input): Promise<Output> {
       const user = await this.usersRepository.findByEmail(email)
 
       const passwordMatches = await this.hashProvider.compare(
@@ -56,11 +51,6 @@ export namespace LoginUseCase {
       }
 
       const token = await this.tokenProvider.sign(payload)
-
-      res.cookie(AUTHENTICATION_COOKIE, token, {
-        maxAge: AUTHENTICATION_COOKIE_EXPIRATION,
-        httpOnly: true,
-      })
 
       return {
         user: payload,
