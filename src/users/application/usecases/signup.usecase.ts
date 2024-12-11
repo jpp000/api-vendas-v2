@@ -3,7 +3,7 @@ import { UserOutput } from '../dtos/user-output.dto'
 import { UsersRepository } from '@/users/domain/repositories/users.repository'
 import { HashProvider } from '@/users/domain/providers/hash.provider'
 
-export namespace CreateUserUseCase {
+export namespace SignupUseCase {
   export type Input = {
     name: string
     email: string

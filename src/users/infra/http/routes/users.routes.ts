@@ -8,7 +8,7 @@ import {
   validateSearchUsers,
 } from '../middlewares'
 import {
-  createUserController,
+  signupController,
   getUserController,
   searchUsersController,
   loginController,
@@ -19,7 +19,7 @@ import {
 
 const usersRoutes = Router()
 
-usersRoutes.post('/', validateCreateUser, createUserController)
+usersRoutes.post('/', validateCreateUser, signupController)
 
 usersRoutes.get('/:id', validateGetUser, getUserController)
 

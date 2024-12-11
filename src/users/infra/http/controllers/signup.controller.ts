@@ -1,8 +1,8 @@
-import { CreateUserUseCase } from '@/users/application/usecases/create-user.usecase'
+import { SignupUseCase } from '@/users/application/usecases/signup.usecase'
 import { NextFunction, Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-export async function createUserController(
+export async function signupController(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -10,10 +10,10 @@ export async function createUserController(
   try {
     const { name, email, password } = req.body
 
-    const createUserUseCase =
-      container.resolve<CreateUserUseCase.UseCase>('CreateUserUseCase')
+    const SignupUseCase =
+      container.resolve<SignupUseCase.UseCase>('SignupUseCase')
 
-    const user = await createUserUseCase.execute({
+    const user = await SignupUseCase.execute({
       name,
       email,
       password,

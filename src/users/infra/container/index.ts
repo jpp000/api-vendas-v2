@@ -6,7 +6,7 @@ import { UsersTypeormRepository } from '../typeorm/repositories/users-typeorm.re
 import { UsersRepository } from '@/users/domain/repositories/users.repository'
 import { HashProvider } from '@/users/domain/providers/hash.provider'
 import { BcryptHashProvider } from '../providers/hash/bcrypt-hash.provider'
-import { CreateUserUseCase } from '@/users/application/usecases/create-user.usecase'
+import { SignupUseCase } from '@/users/application/usecases/signup.usecase'
 import { GetUserUseCase } from '@/users/application/usecases/get-user.usecase'
 import { SearchUsersUseCase } from '@/users/application/usecases/search-users.usecase'
 import { TokenProvider } from '@/users/domain/providers/token.provider'
@@ -25,9 +25,9 @@ container.registerSingleton<UsersRepository>(
   UsersTypeormRepository,
 )
 
-container.registerSingleton<CreateUserUseCase.UseCase>(
-  'CreateUserUseCase',
-  CreateUserUseCase.UseCase,
+container.registerSingleton<SignupUseCase.UseCase>(
+  'SignupUseCase',
+  SignupUseCase.UseCase,
 )
 
 container.registerSingleton<GetUserUseCase.UseCase>(
