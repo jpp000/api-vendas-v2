@@ -21,9 +21,10 @@ export async function deleteUserController(
       )
     }
 
-    await deleteUserUseCase.execute({ id })
-
     req.user.invalid = true
+
+    await deleteUserUseCase.execute({ id }, req)
+
     res.clearCookie(AUTHENTICATION_COOKIE)
 
     return res.status(200).json(true)

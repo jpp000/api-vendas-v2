@@ -4,6 +4,7 @@ import { routes } from './routes'
 import { errorHandler } from './middlewares/errorHandler'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import cookieParser from 'cookie-parser'
 
 const options = {
   definition: {
@@ -22,6 +23,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use(cookieParser())
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use(routes)
 app.use(errorHandler)
